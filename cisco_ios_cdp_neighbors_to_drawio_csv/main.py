@@ -199,7 +199,7 @@ def parse_json_to_drawio_csv(json_file_path: str, csv_file_path: str):
 def main():
 
     json_file_path = f"{os.getenv('APPDATA')}\cdp.json"
-    csv_file_path = f"{os.getenv('APPDATA')}\cpd.txt"
+    csv_file_path = f"{os.getenv('APPDATA')}\cdp.txt"
 
     write_cdp_output_to_json(json_file_path)
     parse_json_to_drawio_csv(json_file_path, csv_file_path)
