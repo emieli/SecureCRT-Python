@@ -121,7 +121,12 @@ def parse_json_to_drawio_csv(json_file_path: str, csv_file_path: str):
     except FileNotFoundError:
         return
 
-    settings = """# stylename: platform
+    settings = """##
+## Import me into Draw.io / app.diagrams.net by copying the text in this file.
+## Then open the program and go to Arrange -> Insert -> Advanced -> CSV
+## Clear all the text in the box and replace it with the text you copied here.
+## File should now load with your topology displayed!
+# stylename: platform
 # width: 40
 # height: 40
 # styles: {\\
@@ -193,11 +198,13 @@ def parse_json_to_drawio_csv(json_file_path: str, csv_file_path: str):
 
 def main():
 
-    json_file_path = r"%appdata%\cdp_neighbors_to_drawio\cdp.json"
-    csv_file_path = r"%appdata%\cdp_neighbors_to_drawio\cdp.csv"
+    json_file_path = f"{os.getenv('APPDATA')}\cdp.json"
+    csv_file_path = f"{os.getenv('APPDATA')}\cpd.txt"
 
     write_cdp_output_to_json(json_file_path)
     parse_json_to_drawio_csv(json_file_path, csv_file_path)
+
+    crt.Dialog.MessageBox(f"Open the file '{csv_file_path}' and read the instructions for importing to Draw.io.")
 
 
 main()
